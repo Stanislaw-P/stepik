@@ -2,6 +2,7 @@
 using stepik.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace stepik.Services
 
             using var command = new MySqlCommand(sqlQuery, connection);
             object totalCount = command.ExecuteScalar();
-            return (int)totalCount;
+            return Convert.ToInt32(totalCount);
         }
 
         public static List<Course> Get(string fullName)
