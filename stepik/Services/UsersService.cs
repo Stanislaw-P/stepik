@@ -110,5 +110,24 @@ namespace stepik.Services
             command.ExecuteNonQuery();
             return returnValueParam.Value.ToString();
         }
+
+        /// <summary>
+        /// Рейтинг пользователей
+        /// </summary>
+        /// <returns>DataSet</returns>
+        public static DataSet GetUserRating()
+        {
+            using var connection = new MySqlConnection(Constant.ConnectionString);
+            string sqlQuery = @"SELECT full_name, knowledge, reputation
+                                FROM users
+                                WHERE is_active
+                                ORDER BY knowledge DESC
+                                LIMIT 10;";
+            using MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+            using MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(command);
+            DataSet dataSet = new DataSet();
+            sqlDataAdapter.Fill(dataSet);
+            return dataSet;
+        }
     }
 }
