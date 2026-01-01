@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stepik", "stepik\stepik.csproj", "{DB7FCBE5-B7CA-4A69-8556-1087BB72E9FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stepik_API", "swagger_test\stepik_API.csproj", "{EE03B25E-7688-4550-8030-55AD55F46C09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DB7FCBE5-B7CA-4A69-8556-1087BB72E9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB7FCBE5-B7CA-4A69-8556-1087BB72E9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB7FCBE5-B7CA-4A69-8556-1087BB72E9FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE03B25E-7688-4550-8030-55AD55F46C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE03B25E-7688-4550-8030-55AD55F46C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE03B25E-7688-4550-8030-55AD55F46C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE03B25E-7688-4550-8030-55AD55F46C09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

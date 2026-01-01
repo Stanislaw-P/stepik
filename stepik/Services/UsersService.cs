@@ -16,7 +16,7 @@ namespace stepik.Services
         /// </summary>
         /// <param name="fullName">Полное имя пользователя</param>
         /// <returns>User</returns>
-        public static User? Get(string fullName)
+        public User? Get(string fullName)
         {
             using var connection = new MySqlConnection(Constant.ConnectionString);
             connection.Open();
@@ -40,7 +40,7 @@ namespace stepik.Services
                 : null;
         }
 
-        public static bool Add(User user)
+        public bool Add(User user)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace stepik.Services
             }
         }
 
-        public static int GetTotalCount()
+        public int GetTotalCount()
         {
             using var connection = new MySqlConnection(Constant.ConnectionString);
             connection.Open();
@@ -87,7 +87,7 @@ namespace stepik.Services
         /// </summary>
         /// <param name="number">Число для форматирования</param>
         /// <returns>Отформатированное число</returns>
-        public static string FormatUserMetrics(int number)
+        public string FormatUserMetrics(int number)
         {
             using var connection = new MySqlConnection(Constant.ConnectionString);
             connection.Open();
@@ -115,7 +115,7 @@ namespace stepik.Services
         /// Рейтинг пользователей
         /// </summary>
         /// <returns>DataSet</returns>
-        public static DataSet GetUserRating()
+        public DataSet GetUserRating()
         {
             using var connection = new MySqlConnection(Constant.ConnectionString);
             string sqlQuery = @"SELECT full_name, knowledge, reputation

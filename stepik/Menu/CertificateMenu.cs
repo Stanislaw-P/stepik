@@ -4,9 +4,11 @@ using System.Data;
 
 public record class CertificateMenu(User _user, WrongChoice _wrongChoice)
 {
+    private readonly CertificatesService _сertificatesService = new();
+
     public void Display()
     {
-        var certificates = CertificatesService.Get(_user.FullName);
+        var certificates = _сertificatesService.Get(_user.FullName);
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("\n* Сертификаты пользователя " + _user.FullName + " *\n\n" +
                           "Выберите действие (введите число и нажмите Enter):\n" +

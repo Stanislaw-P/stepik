@@ -10,7 +10,7 @@ namespace stepik.Services
 {
     public class CommentsService
     {
-        public static List<Comment> Get(int courseId)
+        public List<Comment> Get(int courseId)
         {
             using var connection = new MySqlConnection(Constant.ConnectionString);
             connection.Open();
@@ -57,7 +57,7 @@ namespace stepik.Services
         /// </summary>
         /// <param name="id">id комментария</param>
         /// <returns>Удалось ли удалить комментарий</returns>
-        public static bool Delete(int id)
+        public bool Delete(int id)
         {
             using var connection = new MySqlConnection(Constant.ConnectionString);
             connection.Open();

@@ -3,6 +3,8 @@ using System.Data;
 
 public record class RatingMenu(WrongChoice _wrongChoice)
 {
+    private readonly UsersService _usersService = new();
+
     public void Display()
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -10,7 +12,7 @@ public record class RatingMenu(WrongChoice _wrongChoice)
                           "Выберите действие (введите число и нажмите Enter):\n" +
                           "1. Назад\n");
 
-        var dataSet = UsersService.GetUserRating();
+        var dataSet = _usersService.GetUserRating();
 
         if (dataSet.Tables.Count == 0 || dataSet.Tables[0].Rows.Count == 0)
         {

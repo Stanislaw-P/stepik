@@ -15,7 +15,7 @@ namespace stepik.Services
         /// </summary>
         /// <param name="fullName">Полное имя пользователя</param>
         /// <returns>DataSet</returns>
-        public static DataSet Get(string fullName)
+        public DataSet Get(string fullName)
         {
             using var connection = new MySqlConnection(Constant.ConnectionString);
             connection.Open();

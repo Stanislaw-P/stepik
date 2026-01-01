@@ -11,7 +11,7 @@ namespace stepik.Services
 {
     public class CoursesService
     {
-        public static int GetTotalCount()
+        public int GetTotalCount()
         {
             using var connection = new MySqlConnection(Constant.ConnectionString);
             connection.Open();
@@ -23,7 +23,7 @@ namespace stepik.Services
             return Convert.ToInt32(totalCount);
         }
 
-        public static List<Course> Get(string fullName)
+        public List<Course> Get(string fullName)
         {
             var courses = new List<Course>();
 
