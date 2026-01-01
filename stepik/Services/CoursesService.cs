@@ -25,35 +25,36 @@ namespace stepik.Services
 
         public static List<Course> Get(string fullName)
         {
+            var courses = new List<Course>();
+
             using var connection = new MySqlConnection(Constant.ConnectionString);
             connection.Open();
 
-            string sqlQuery = @"SELECT c.title, c.summary, c.photo
-                                FROM courses AS c JOIN users AS us ON us.full_name = @FullName
-                                JOIN user_courses AS uc ON uc.user_id = us.id 
-                                WHERE c.id = uc.course_id
-                                ORDER BY uc.last_viewed DESC;";
+            var query = @"SELECT title, summary, photo, courses.id
+                      FROM user_courses
+                      JOIN courses ON user_courses.course_id = courses.id
+                      JOIN users ON users.id = user_courses.user_id
+                      WHERE users.full_name = @fullName AND users.is_active = 1
+                      ORDER BY user_courses.last_viewed DESC;";
 
-            using var command = new MySqlCommand(sqlQuery, connection);
-            var fullNameParam = new MySqlParameter("@FullName", fullName);
+            using var command = new MySqlCommand(query, connection);
+            var fullNameParam = new MySqlParameter("@fullName", fullName);
             command.Parameters.Add(fullNameParam);
-            
-            using var reader = command.ExecuteReader();
-            List<Course> courseList = new List<Course>();
 
+            using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                Course course = new Course
+                var course = new Course
                 {
-                    Title = reader.GetString(1),
-                    Summary = reader.IsDBNull(3) ? null : reader.GetString(3),
-                    Photo = reader.IsDBNull(4) ? null : reader.GetString(4),
+                    Id = reader.GetInt32("id"),
+                    Title = reader.GetString("title"),
+                    Summary = reader.IsDBNull("summary") ? null : reader.GetString("summary"),
+                    Photo = reader.IsDBNull("photo") ? null : reader.GetString("photo")
                 };
-
-                courseList.Add(course);
+                courses.Add(course);
             }
 
-            return courseList;
+            return courses;
         }
     }
 }
