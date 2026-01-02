@@ -129,5 +129,25 @@ namespace stepik.Services
             sqlDataAdapter.Fill(dataSet);
             return dataSet;
         }
+
+        /// <summary>
+        /// Получение социальной информации пользователя
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <returns>DataSet</returns>
+        public DataSet GetUserSocialInfo(string userName)
+        {
+            using var connection = new MySqlConnection(Constant.ConnectionString);
+            connection.Open();
+            var sqlQuery = "CALL get_user_social_info(@user_name);";
+            
+            using MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+            command.Parameters.AddWithValue("@user_name", userName);
+
+            using MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(command);
+            DataSet dataSet = new DataSet();
+            sqlDataAdapter.Fill(dataSet);
+            return dataSet;
+        }
     }
 }

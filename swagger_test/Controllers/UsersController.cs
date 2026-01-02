@@ -57,5 +57,17 @@ namespace stepik_API.Controllers
 
             return Ok(userRatings);
         }
+
+        [HttpGet("GetUserSocialInfo")]
+        public IActionResult GetUserSocialInfo(string userName)
+        {
+            var dataSet = _usersService.GetUserSocialInfo(userName);
+            var socialInfo = dataSet.Tables[0].Rows.Cast<DataRow>().Select(row => new
+            {
+                ProviderName = row["name"].ToString(),
+                ConnectionUrl = row["connect_url"].ToString()
+            }).ToList();
+            return Ok(socialInfo);
+        }
     }
 }
